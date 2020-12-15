@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
+    resources :items, only: [:index]
   end
   devise_for :admins
   devise_for :customers
