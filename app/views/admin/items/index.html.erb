@@ -1,2 +1,24 @@
 <h1>管理者</h1>
 <h2>商品一覧</h2>
+
+<teble>
+  <tr>
+    <th>ID</th>
+    <th>genreID</th>
+    <th>name</th>
+    <th>image</th>
+    <th>introduction</th>
+    <th>price</th>
+    <th>status</th>
+  </tr>
+  <% @items.each do |item| %>
+  <tr>
+    <td><%= item.id %></td>
+    <td><%= item.genre_id %></td>
+    <td><%= item.name %></td>
+    <td><%= attachment_image_tag item, :image, :fill, 60, 60 %></td>
+    <td><%= item.price %> yen</td>
+    <td><%= item.is_active %></td>
+  </tr>
+  <% end %>
+</teble>
