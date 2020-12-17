@@ -1,7 +1,7 @@
 <h1>管理者</h1>
 <h2>商品一覧</h2>
 
-<teble>
+<table  border="1">
   <tr>
     <th>ID</th>
     <th>genreID</th>
@@ -14,11 +14,22 @@
   <% @items.each do |item| %>
   <tr>
     <td><%= item.id %></td>
-    <td><%= item.genre_id %></td>
-    <td><%= item.name %></td>
+    <td><%= item.genre.name %></td>
+    <td>
+      <%= link_to admin_item_path(item.id) do %>
+        <%= item.name %>
+      <% end %>
+    </td>
     <td><%= attachment_image_tag item, :image, :fill, 60, 60 %></td>
+    <td><%= item.introduction %></td>
     <td><%= item.price %> yen</td>
-    <td><%= item.is_active %></td>
+    <td>
+      <% if item.is_active? %>
+        有効
+      <% else %>
+        無効
+      <% end %>
+    </td>
   </tr>
   <% end %>
-</teble>
+</table>
