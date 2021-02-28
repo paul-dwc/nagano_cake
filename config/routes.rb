@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'public/homes#top'
   scope module: :public do
     get 'about' => 'homes#about'
+    resources :items,         only: [:index]
   end
   namespace :admin do
     root to: 'homes#top'
