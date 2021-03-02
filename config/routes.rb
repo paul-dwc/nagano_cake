@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   root to: 'public/homes#top'
   scope module: :public do
     get 'about' => 'homes#about'
-    resources :items,         only: [:index]
-    resources :cart_items,    only: [:index]
+    resources :items,         only: [:index, :show]
+    resources :cart_items,    only: [:index, :create]
   end
   namespace :admin do
     root to: 'homes#top'
