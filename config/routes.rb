@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'about' => 'homes#about'
     resources :items,         only: [:index]
+    resources :cart_items,    only: [:index]
   end
   namespace :admin do
     root to: 'homes#top'
