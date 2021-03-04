@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     get  'customers/mypage'   => 'customers#show'
     get  'customers/inactive' => 'customers#inactive'
     patch 'customers/disable' => 'customers#disable'
+    get  'customers/edit'     => 'customers#edit'
+    patch 'customers'         => 'customers#update'
   end
   namespace :admin do
     root to: 'homes#top'
