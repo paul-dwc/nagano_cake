@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :cart_items,    only: [:index, :create]
     resources :orders,        only: [:new, :create]
     post 'orders/confirm' => 'orders#confirm'
+    resources :addresses,     only: [:index, :create]
   end
   namespace :admin do
     root to: 'homes#top'
