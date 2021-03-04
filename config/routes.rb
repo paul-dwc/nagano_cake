@@ -5,9 +5,10 @@ Rails.application.routes.draw do
     resources :items,         only: [:index, :show]
     resources :cart_items,    only: [:index, :create]
     resources :orders,        only: [:new, :create]
-    post 'orders/confirm'  => 'orders#confirm'
-    get  'orders/complete' => 'orders#complete'
+    post 'orders/confirm'   => 'orders#confirm'
+    get  'orders/complete'  => 'orders#complete'
     resources :addresses,     only: [:index, :create]
+    get  'customers/mypage' => 'customers#show'
   end
   namespace :admin do
     root to: 'homes#top'
