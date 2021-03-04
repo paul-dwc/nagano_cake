@@ -29,6 +29,11 @@ class Public::OrdersController < ApplicationController
     @order_details = OrderDetail.all
   end
 
+  def show
+    @order = Order.find(params[:id])
+    @order_details = OrderDetail.where(order_id: @order.id)
+  end
+
   def create
     order = Order.new(order_params)
     order.save
