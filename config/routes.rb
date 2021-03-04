@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :orders,            only: [:new, :create]
     post 'orders/confirm'     => 'orders#confirm'
     get  'orders/complete'    => 'orders#complete'
-    resources :addresses,         only: [:index, :create]
+    resources :addresses,         only: [:index, :create, :edit, :update]
     get  'customers/mypage'   => 'customers#show'
     get  'customers/inactive' => 'customers#inactive'
     patch 'customers/disable' => 'customers#disable'
