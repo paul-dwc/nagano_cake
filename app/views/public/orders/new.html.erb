@@ -25,7 +25,7 @@
   <%= f.collection_select :addressID,
                           Address.where(customer_id: current_customer.id),
                           :id,
-                          :postal_code %>
+                          :view_address %>
   <br>
   <%= f.radio_button :send_address_select, :"2" %>
   <%= f.label :send_address_select, "新しいお届け先" %>

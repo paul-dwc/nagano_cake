@@ -3,6 +3,7 @@
 
 <table>
   <tr>
+    <th>order_id</th>
     <th>購入日時</th>
     <th>購入者</th>
     <th>注文個数</th>
@@ -10,12 +11,13 @@
   </tr>
   <% @orders.each do |order| %>
     <tr>
+      <td><%= order.id %></td>
       <td><%= order.created_at %></td>
       <td>
         <%= order.customer.last_name %>
         <%= order.customer.first_name %>
       </td>
-      <td><%= order.order_detail.count %>個</td>
+      <td>サンプル個数</td>
       <td>
         <% case order.status
               when 0 %>

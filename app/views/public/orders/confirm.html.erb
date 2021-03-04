@@ -8,20 +8,38 @@
     <th>数量</th>
     <th>小計</th>
   </tr>
-  <% total = 0 %>
+  <% total_price = 0 %>
+  <% total_amount = 0 %>
+  <% shipping_cost = 800 %>
   <% @cart_items.each do |cart_item| %>
   <tr>
     <td><%= cart_item.item.name %></td>
     <td><%= cart_item.item.price %></td>
     <td><%= cart_item.amount %></td>
     <td>
-      <% subtotal = cart_item.item.price * cart_item.amount %>
-      <% total = total + subtotal %>
-      <%= subtotal %>
+      <% subtotal_price = cart_item.item.price * cart_item.amount %>
+      <% total_price = total_price + subtotal_price %>
+      <%= subtotal_price %>
     </td>
   </tr>
   <% end %>
 </table>
+
+<table border="1">
+  <tr>
+    <th>送料</th>
+    <td><%= shipping_cost %></td>
+  </tr>
+  <tr>
+    <th>商品合計</th>
+    <td><%= total_price %></td>
+  </tr>
+  <tr>
+    <th>請求金額</th>
+    <td><%= total_price + shipping_cost %></td>
+  </tr>
+</table>
+
 <br>
 <table>
   <tr>
@@ -37,7 +55,20 @@
   <tr>
     <th>お届け先</th>
     <td>
-
+      <%= @send_address_postalcode %>
+      <%= @send_address_address %><br>
+      <%= @send_address_name %>
     </td>
   </tr>
 </table>
+
+<%= form_with model:@order, url: orders_path, local:true do |f| %>
+  <%= f.hidden_field :customer_id, value: current_customer.id %>
+  <%= f.hidden_field :postal_code, value: @send_address_postalcode %>
+  <%= f.hidden_field :address, value: @send_address_address %>
+  <%= f.hidden_field :name, value: @send_address_name %>
+  <%= f.hidden_field :shipping_cost, value: shipping_cost %>
+  <%= f.hidden_field :total_payment, value: total_price + shipping_cost %>
+  <%= f.hidden_field :payment_method, value: @payment_method %>
+  <%= f.submit "注文を確定する" %>
+<% end %>

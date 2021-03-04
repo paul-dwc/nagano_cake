@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     resources :items,         only: [:index, :show]
     resources :cart_items,    only: [:index, :create]
     resources :orders,        only: [:new, :create]
-    post 'orders/confirm' => 'orders#confirm'
+    post 'orders/confirm'  => 'orders#confirm'
+    get  'orders/complete' => 'orders#complete'
     resources :addresses,     only: [:index, :create]
   end
   namespace :admin do
