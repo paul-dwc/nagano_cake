@@ -24,6 +24,11 @@ class Public::OrdersController < ApplicationController
     end
   end
 
+  def index
+    @orders = Order.where(customer_id: current_customer.id)
+    @order_details = OrderDetail.all
+  end
+
   def create
     order = Order.new(order_params)
     order.save
