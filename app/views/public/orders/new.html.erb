@@ -1,0 +1,47 @@
+<h1>ECサイト</h1>
+<h2>注文情報入力</h2>
+
+
+<%= form_with url: orders_confirm_path, local:true do |f| %>
+  <h3>支払方法</h3>
+  <%= f.radio_button :payment_method, :"0", checked: true %>
+  <%= f.label :payment_method, "クレジットカード" %>
+  <br>
+  <%= f.radio_button :payment_method, :"1" %>
+  <%= f.label :payment_method, "銀行振込" %>
+  <br>
+  <h3>お届け先</h3>
+  <%= f.radio_button :send_address_select, :"0", checked: true %>
+  <%= f.label :send_address_select, "ご自身の住所" %>
+  <p>
+    〒<%= @customer.postal_code %>
+    <%= @customer.address %><br>
+    <%= @customer.last_name %>
+    <%= @customer.first_name %>
+  </p>
+  <%= f.radio_button :send_address_select, :"1" %>
+  <%= f.label :send_address_select, "登録住所から選択" %>
+  <br>
+  <%= f.collection_select :addressID,
+                          Address.where(customer_id: current_customer.id),
+                          :id,
+                          :postal_code %>
+  <br>
+  <%= f.radio_button :send_address_select, :"2" %>
+  <%= f.label :send_address_select, "新しいお届け先" %>
+  <table>
+    <tr>
+      <td><%= f.label :new_postal_code, "郵便番号（ハイフンなし）" %></td>
+      <td><%= f.text_field :new_postal_code %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :new_address, "住所" %></td>
+      <td><%= f.text_field :new_address, :size=>"60" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :new_name, "宛名" %></td>
+      <td><%= f.text_field :new_name %></td>
+    </tr>
+  </table>
+  <%= f.submit "確認画面へ進む" %>
+<% end %>
