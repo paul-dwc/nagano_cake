@@ -1,9 +1,7 @@
-<h1>管理者</h1>
 <h2>注文一覧</h2>
 
-<table>
+<table class="table">
   <tr>
-    <th>order_id</th>
     <th>購入日時</th>
     <th>購入者</th>
     <th>注文個数</th>
@@ -11,13 +9,18 @@
   </tr>
   <% @orders.each do |order| %>
     <tr>
-      <td><%= order.id %></td>
-      <td><%= order.created_at %></td>
+      <td>
+        <%= link_to admin_order_path(order.id) do %>
+          <%= order.created_at %>
+        <% end %>
+      </td>
       <td>
         <%= order.customer.last_name %>
         <%= order.customer.first_name %>
       </td>
-      <td>サンプル個数</td>
+      <td>
+        <%= @order_details.where(order_id: order.id).sum(:amount) %>
+      </td>
       <td>
         <% case order.status
               when 0 %>

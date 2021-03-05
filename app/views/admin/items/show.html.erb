@@ -1,26 +1,39 @@
-<h1>管理者</h1>
 <h2>商品詳細</h2>
 
-<h4>ID</h4>
-<p><%= @item.id %></p>
-<h4>ジャンル名</h4>
-<p><%= @item.genre.name %></p>
-<h4>商品名</h4>
-<p><%= @item.name %></p>
-<h4>画像</h4>
-<p><%= attachment_image_tag @item, :image, :fill, 100, 100 %></p>
-<h4>商品説明文</h4>
-<p><%= @item.introduction %></p>
-<h4>価格</h4>
-<p><%= @item.price %> yen</p>
-<h4>有効ステータス</h4>
-<p>
-  <% if @item.is_active? %>
-    有効
-  <% else %>
-    無効
-  <% end %>
-</p>
-
-<%= link_to "edit", edit_admin_item_path %>
-<%= link_to "back", admin_items_path %>
+<div class="row">
+  <div class="col-xs-5">
+    <p><%= attachment_image_tag @item, :image, :fill, 100, 100 %></p>
+  </div>
+  <div class="col-xs-7">
+    <table>
+      <tr>
+        <th>商品名</th>
+        <td><%= @item.name %></td>
+      </tr>
+      <tr>
+        <th>商品説明文</th>
+        <td><%= @item.introduction %></td>
+      </tr>
+      <tr>
+        <th>ジャンル</th>
+        <td><%= @item.genre.name %></td>
+      </tr>
+      <tr>
+        <th>税込価格</th>
+        <th><%= @item.price %>円</th>
+      </tr>
+      <tr>
+        <th>販売ステータス</th>
+        <td>
+          <% if @item.is_active? %>
+            有効
+          <% else %>
+            無効
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <%= link_to "編集する", edit_admin_item_path %>
+  </div>
+</div>

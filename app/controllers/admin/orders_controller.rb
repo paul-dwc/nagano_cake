@@ -1,6 +1,11 @@
 class Admin::OrdersController < ApplicationController
   def index
-    @orders = Order.all
+    @order_details = OrderDetail.all
+    if params[:customer_id].blank?
+      @orders = Order.all
+    else
+      @orders = Order.where(customer_id: params[:customer_id])
+    end
   end
 
   def show

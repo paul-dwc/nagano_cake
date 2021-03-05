@@ -15,3 +15,15 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+header {
+  background-color :white;
+}
+
+header div {
+  border :solid medium black;
+}
+
+body {
+  margin-top :70px;
+}
