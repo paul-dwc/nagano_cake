@@ -8,9 +8,8 @@ class Public::CustomersController < ApplicationController
 
   def disable
     customer = Customer.find(current_customer.id)
-    customer.is_deleted = TRUE
-    customer.update
-    redirect_to destroy_customer_session_path
+    customer.update(is_deleted: "TRUE")
+    redirect_to root_path
   end
 
   def edit

@@ -1,21 +1,20 @@
-<h1>ECサイト</h1>
-<h2>商品詳細</h2>
-
-<h4>ID</h4>
-<p><%= @item.id %></p>
-<h4>ジャンル名</h4>
-<p><%= @item.genre.name %></p>
-<h4>商品名</h4>
-<p><%= @item.name %></p>
-<h4>画像</h4>
-<p><%= attachment_image_tag @item, :image, :fill, 100, 100 %></p>
-<h4>商品説明文</h4>
-<p><%= @item.introduction %></p>
-<h4>価格</h4>
-<p><%= @item.price %> yen</p>
-<br>
-<%= form_with model:@cart_item, url: cart_items_path, local:true do |f| %>
-  <%= f.hidden_field :item_id, value: @item.id %>
-  <%= f.select :amount, [["1","1"],["2","2"],["3","3"],["4","4"],["5","5"]] %>
-  <%= f.submit "カートに入れる" %>
-<% end %>
+<div class="row">
+  <div class="col-xs-2"></div>
+  <div class="col-xs-2">
+    <%= attachment_image_tag @item, :image, :fill, 100, 100 %>
+  </div>
+  <div class="col-xs-8">
+    <h4><%= @item.name %></h4>
+    <p><%= @item.introduction %></p>
+    <br><br>
+    <p><strong>￥<%= @item.price %></strong>（税込）</p>
+    <br>
+    <div>
+      <%= form_with model:@cart_item, url: cart_items_path, local:true do |f| %>
+        <%= f.hidden_field :item_id, value: @item.id %>
+        <%= f.select :amount, [["1","1"],["2","2"],["3","3"],["4","4"],["5","5"]] %>
+        <%= f.submit "カートに入れる" %>
+      <% end %>
+    </div>
+  </div>
+</div>

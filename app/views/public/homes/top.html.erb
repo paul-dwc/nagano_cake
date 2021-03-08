@@ -1,2 +1,45 @@
-<h1>ECサイト</h1>
-<h2>topページ</h2>
+<div class="row">
+  <div class="col-xs-2">
+    <table class="table">
+      <tr>
+        <th>ジャンル</th>
+      </tr>
+      <tr>
+        <td>
+          <% @genres.each do |genre| %>
+            <%= genre.name %>
+            <br>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-xs-10">
+    <img src="/assets/top_message.png" alt="" >
+
+    <h2>新着商品</h2>
+    <table class="table">
+      <tr>
+        <% @items.each do |item| %>
+          <td>
+            <%= attachment_image_tag item, :image, :fill, 60, 60 %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <% @items.each do |item| %>
+          <td>
+            <%= item.name %>
+          </td>
+        <% end %>
+      </tr>
+      <tr>
+        <% @items.each do |item| %>
+          <td>
+            <%= item.price %>
+          </td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+</div>
